@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".MainActivity">
+
+    <czh.lib.ItemLayout
+        android:id="@+id/itemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemHeight="50dp"
+        app:leftDrawablePadding="5dp"
+        app:leftPadding="16dp"
+        app:leftTextColor="#333333"
+        app:leftTextSize="12sp"
+        app:lineColor="#e5e5e5"
+        app:lineHeight="1dp"
+        app:lineMarginLeft="16dp"
+        app:lineMarginRight="0dp"
+        app:rightDrawablePadding="5dp"
+        app:rightPadding="16dp"
+        app:rightTextColor="#333333"
+        app:rightTextSize="12sp">
+
+    </czh.lib.ItemLayout>
+
+</android.support.constraint.ConstraintLayout>
