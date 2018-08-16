@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+
     tools:context=".MainActivity">
 
     <czh.widget.ItemLayout
+        android:background="#f2f2f2"
         android:id="@+id/itemLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemHeight="50dp"
+        app:itemBgColor="#ffffff"
         app:leftDrawablePadding="5dp"
         app:leftPadding="16dp"
         app:leftTextColor="#333333"

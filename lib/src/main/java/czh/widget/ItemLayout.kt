@@ -23,8 +23,9 @@ class ItemLayout : LinearLayout {
 
     var mData: List<ItemBean>? = null
     var itemHeight = 96
+    var itemBgColor = Color.parseColor("#ffffff")
 
-    var leftTextSize =  28f
+    var leftTextSize = 28f
     var leftTextColor = Color.parseColor("#333333")
     var leftPadding = 30
     var leftDrawablePadding = 10
@@ -55,6 +56,8 @@ class ItemLayout : LinearLayout {
                 val type = it.getIndex(index)
                 when (type) {
                     R.styleable.ItemLayout_itemHeight -> itemHeight = it.getDimensionPixelOffset(type, 48)
+                    R.styleable.ItemLayout_itemBgColor -> itemBgColor = it.getColor(type, Color.parseColor("#ffffff"))
+
                     R.styleable.ItemLayout_leftTextSize -> leftTextSize = it.getDimension(type, 28f)
                     R.styleable.ItemLayout_leftTextColor -> leftTextColor = it.getColor(type, Color.parseColor("#333333"))
                     R.styleable.ItemLayout_leftPadding -> leftPadding = it.getDimensionPixelOffset(type, 0)
@@ -104,6 +107,7 @@ class ItemLayout : LinearLayout {
     fun create() {
         mData?.forEachIndexed { position, it ->
             val view = LayoutInflater.from(mContext).inflate(R.layout.item, null).apply {
+                itemLayout.setBackgroundColor(itemBgColor)
                 itemLayout.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight)
                 leftTextView.apply {
                     textSize = px2dip(mContext, leftTextSize).toFloat()
@@ -132,9 +136,13 @@ class ItemLayout : LinearLayout {
             addView(view)
             mViewList.add(view)
 
-            createLineView(it.height).let {
+            createLineView(it.height,it.marginBottom).let {
                 addView(it)
                 mLineViewList.add(it)
+            }
+
+            it.marginBottom?.let {
+                addView(createLineView(lineHeight))
             }
 
             view.setOnClickListener {
@@ -148,16 +156,19 @@ class ItemLayout : LinearLayout {
      * @param height
      * @return View
      */
-    private fun createLineView(height: Int? = null): View {
+    private fun createLineView(height: Int? = null, marginBottom: Int? = null): View {
         return View(mContext).apply {
+            setBackgroundColor(lineColor)
             val lp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height
                     ?: lineHeight)
-            if (height == null) {
+            if (height == null&&marginBottom==null) {
                 lp.leftMargin = lineMarginLeft
                 lp.rightMargin = lineMarginRight
             }
+            marginBottom?.let {
+                lp.bottomMargin = it
+            }
             layoutParams = lp
-            setBackgroundColor(lineColor)
         }
     }
 

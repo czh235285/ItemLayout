@@ -16,7 +16,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val items = arrayListOf<ItemBean>()
         items.add(ItemBean(R.mipmap.ic_launcher, "测试"))
-        items.add(ItemBean(R.mipmap.ic_launcher, "测试", "测试"))
+        items.add(ItemBean(R.mipmap.ic_launcher, "测试", "测试",marginBottom = 20))
+        items.add(ItemBean(R.mipmap.ic_launcher, "测试", "测试",marginBottom = 20))
+        items.add(ItemBean(R.mipmap.ic_launcher, "测试", "测试",marginBottom = 20))
         items.add(ItemBean(R.mipmap.ic_launcher, "测试", height = 30))
         items.add(ItemBean(R.mipmap.ic_launcher, "测试"))
         items.add(ItemBean(R.mipmap.ic_launcher, "测试"))
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             defaultIcon=R.mipmap.ico_next
             //item高度
             itemHeight = resources.getDimensionPixelOffset(R.dimen.x98)
+            itemBgColor=Color.parseColor("#ffffff")
             //左边TextView
             leftTextColor = Color.parseColor("#333333")
             leftTextSize = resources.getDimension(R.dimen.x24)
@@ -38,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             rightPadding = 30
             rightDrawablePadding = 10
             //底部分割线
-            lineColor = Color.parseColor("#e5e5e5")
+            lineColor = Color.parseColor("#666666")
             lineHeight = 1
             lineMarginLeft = 30
 //            lineMarginRight=0
