@@ -24,7 +24,7 @@
         app:rightPadding="16dp"
         app:rightTextColor="#333333"
         app:rightTextSize="12sp">
-
     </czh.widget.ItemLayout>
+
 
 </android.support.constraint.ConstraintLayout>

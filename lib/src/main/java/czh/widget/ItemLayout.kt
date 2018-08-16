@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
@@ -17,26 +16,27 @@ import kotlinx.android.synthetic.main.item.view.*
 class ItemLayout : LinearLayout {
     private var mContext: Context
     private var onItemClickListener: OnItemClickListener? = null
-    private var defaultIcon: Int = R.mipmap.ico_next
     private val mViewList = arrayListOf<View>()
     private val mLineViewList = arrayListOf<View>()
 
-    var mData: List<ItemBean>? = null
-    var itemHeight = 48
+    var defaultIcon: Int = R.mipmap.ico_next
 
-    var leftTextSize = 28f
-    var leftTextColor = 0
-    var leftPadding = 0
-    var leftDrawablePadding = 0
+    var mData: List<ItemBean>? = null
+    var itemHeight = 96
+
+    var leftTextSize =  28f
+    var leftTextColor = Color.parseColor("#333333")
+    var leftPadding = 30
+    var leftDrawablePadding = 10
 
     var rightTextSize = 28f
-    var rightTextColor = 0
-    var rightPadding = 0
-    var rightDrawablePadding = 0
+    var rightTextColor = Color.parseColor("#333333")
+    var rightPadding = 30
+    var rightDrawablePadding = 10
 
     var lineHeight = 1
-    var lineColor = 0
-    var lineMarginLeft = 0
+    var lineColor = Color.parseColor("#e5e5e5")
+    var lineMarginLeft = 30
     var lineMarginRight = 0
 
     constructor(context: Context) : super(context) {
@@ -106,7 +106,7 @@ class ItemLayout : LinearLayout {
             val view = LayoutInflater.from(mContext).inflate(R.layout.item, null).apply {
                 itemLayout.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight)
                 leftTextView.apply {
-                    textSize = px2dip(mContext,leftTextSize).toFloat()
+                    textSize = px2dip(mContext, leftTextSize).toFloat()
                     setTextColor(leftTextColor)
                     setPadding(leftPadding, 0, 0, 0)
                     text = it.leftText
@@ -119,7 +119,7 @@ class ItemLayout : LinearLayout {
                 }
 
                 rightTextView.apply {
-                    textSize = px2dip(mContext,rightTextSize).toFloat()
+                    textSize = px2dip(mContext, rightTextSize).toFloat()
                     it.rightText?.let { text = it }
                     setPadding(0, 0, rightPadding, 0)
                     setTextColor(rightTextColor)
@@ -131,13 +131,8 @@ class ItemLayout : LinearLayout {
             }
             addView(view)
             mViewList.add(view)
-            it.height?.let {
-                createLineView(it).let {
-                    addView(it)
-                    mLineViewList.add(it)
-                }
 
-            } ?: createLineView().let {
+            createLineView(it.height).let {
                 addView(it)
                 mLineViewList.add(it)
             }
@@ -150,8 +145,8 @@ class ItemLayout : LinearLayout {
 
     /**
      * 创建线
-     * @param margin
-     * @return
+     * @param height
+     * @return View
      */
     private fun createLineView(height: Int? = null): View {
         return View(mContext).apply {
