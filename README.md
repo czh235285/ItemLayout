@@ -2,6 +2,7 @@
 
 一行代码链式调用，实现通用item布局
 
+只支持kotlin，还没开始用的，建议学习下kotlin。无论是否认可，都不可否认谷歌在让kotlin上位，无论官方文档片段还是新出开源demo的源码，清一色kotlin语言。
 
 
 use Gradle:
