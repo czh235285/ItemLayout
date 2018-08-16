@@ -1,4 +1,4 @@
-package czh.lib;
+package czh.widget;
 
 import org.junit.Test;
 

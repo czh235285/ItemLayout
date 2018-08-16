@@ -1,10 +1,10 @@
-package czh.lib
+package czh.widget
 
 import android.content.Context
 import android.graphics.Color
-import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
@@ -20,23 +20,24 @@ class ItemLayout : LinearLayout {
     private var defaultIcon: Int = R.mipmap.ico_next
     private val mViewList = arrayListOf<View>()
     private val mLineViewList = arrayListOf<View>()
-    private var items: List<ItemBean>? = null
-    private var itemHeight = 48
 
-    private var leftTextSize = 28f
-    private var leftTextColor = 0
-    private var leftPadding = 0
-    private var leftDrawablePadding = 0
+    var mData: List<ItemBean>? = null
+    var itemHeight = 48
 
-    private var rightTextSize = 28f
-    private var rightTextColor = 0
-    private var rightPadding = 0
-    private var rightDrawablePadding = 0
+    var leftTextSize = 28f
+    var leftTextColor = 0
+    var leftPadding = 0
+    var leftDrawablePadding = 0
+
+    var rightTextSize = 28f
+    var rightTextColor = 0
+    var rightPadding = 0
+    var rightDrawablePadding = 0
 
     var lineHeight = 1
-    private var lineColor = 0
-    private var lineMarginLeft = 0
-    private var lineMarginRight = 0
+    var lineColor = 0
+    var lineMarginLeft = 0
+    var lineMarginRight = 0
 
     constructor(context: Context) : super(context) {
         mContext = context
@@ -74,15 +75,6 @@ class ItemLayout : LinearLayout {
         }
     }
 
-    fun setData(items: List<ItemBean>): ItemLayout {
-        this.items = items
-        return this
-    }
-
-    fun setDefaultIcon(@DrawableRes id: Int): ItemLayout {
-        this.defaultIcon = id
-        return this
-    }
 
     fun getView(position: Int): View {
         return mViewList[position]
@@ -110,14 +102,14 @@ class ItemLayout : LinearLayout {
     }
 
     fun create() {
-        items?.forEachIndexed { position, it ->
+        mData?.forEachIndexed { position, it ->
             val view = LayoutInflater.from(mContext).inflate(R.layout.item, null).apply {
                 itemLayout.layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight)
                 leftTextView.apply {
-                    textSize = leftTextSize
+                    textSize = px2dip(mContext,leftTextSize).toFloat()
                     setTextColor(leftTextColor)
                     setPadding(leftPadding, 0, 0, 0)
-                    it.leftText?.let { text = it }
+                    text = it.leftText
                     it.leftIcon?.let {
                         compoundDrawablePadding = leftDrawablePadding
                         setCompoundDrawables(ContextCompat.getDrawable(mContext, it)?.apply {
@@ -127,7 +119,7 @@ class ItemLayout : LinearLayout {
                 }
 
                 rightTextView.apply {
-                    textSize = rightTextSize
+                    textSize = px2dip(mContext,rightTextSize).toFloat()
                     it.rightText?.let { text = it }
                     setPadding(0, 0, rightPadding, 0)
                     setTextColor(rightTextColor)
@@ -184,6 +176,13 @@ class ItemLayout : LinearLayout {
         return (dipValue * scale + 0.5f).toInt()
     }
 
+    /**
+     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+     */
+    fun px2dip(context: Context, pxValue: Float): Int {
+        val scale = context.resources.displayMetrics.density
+        return (pxValue / scale + 0.5f).toInt()
+    }
 
     /**
      * item点击事件监听

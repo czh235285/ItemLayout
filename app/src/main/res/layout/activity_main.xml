@@ -7,7 +7,7 @@
     android:background="#ffffff"
     tools:context=".MainActivity">
 
-    <czh.lib.ItemLayout
+    <czh.widget.ItemLayout
         android:id="@+id/itemLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,6 +25,6 @@
         app:rightTextColor="#333333"
         app:rightTextSize="12sp">
 
-    </czh.lib.ItemLayout>
+    </czh.widget.ItemLayout>
 
 </android.support.constraint.ConstraintLayout>

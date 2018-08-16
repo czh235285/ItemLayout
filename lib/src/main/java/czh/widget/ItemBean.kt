@@ -1,7 +1,7 @@
-package czh.lib
+package czh.widget
 
 data class ItemBean(
-        var leftIcon: Int,
+        var leftIcon: Int? = null,
         var leftText: String,
         var rightText: String? = "",
         var height: Int? = null

@@ -7,20 +7,22 @@
     android:layout_height="48dp">
 
     <TextView
-        android:paddingLeft="16dp"
-        android:gravity="center_vertical"
         android:id="@+id/leftTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:paddingLeft="16dp"
         android:text="左边" />
 
     <TextView
-        android:gravity="center_vertical"
         android:id="@+id/rightTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
         android:text="右边" />
 </RelativeLayout>

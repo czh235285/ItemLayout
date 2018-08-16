@@ -19,5 +19,4 @@
         <attr name="lineMarginLeft" format="dimension" />
         <attr name="lineMarginRight" format="dimension" />
     </declare-styleable>
-
 </resources>

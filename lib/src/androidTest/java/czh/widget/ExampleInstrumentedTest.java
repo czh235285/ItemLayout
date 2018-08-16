@@ -1,4 +1,4 @@
-package czh.lib;
+package czh.widget;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
