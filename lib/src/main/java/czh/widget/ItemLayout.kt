@@ -40,15 +40,15 @@ class ItemLayout : LinearLayout {
     var lineMarginLeft = 30
     var lineMarginRight = 0
 
-    constructor(context: Context) : super(context) {
+    constructor(context: Context) : this(context, null, 0) {
         mContext = context
     }
 
-    constructor(context: Context, attrs: AttributeSet) : this(context, attrs, 0) {
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0) {
         mContext = context
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         mContext = context
         orientation = VERTICAL
         context.theme.obtainStyledAttributes(attrs, R.styleable.ItemLayout, defStyleAttr, 0).let {
@@ -136,7 +136,7 @@ class ItemLayout : LinearLayout {
             addView(view)
             mViewList.add(view)
 
-            createLineView(it.height,it.marginBottom).let {
+            createLineView(it.height, it.marginBottom).let {
                 addView(it)
                 mLineViewList.add(it)
             }
@@ -161,7 +161,7 @@ class ItemLayout : LinearLayout {
             setBackgroundColor(lineColor)
             val lp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height
                     ?: lineHeight)
-            if (height == null&&marginBottom==null) {
+            if (height == null && marginBottom == null) {
                 lp.leftMargin = lineMarginLeft
                 lp.rightMargin = lineMarginRight
             }
